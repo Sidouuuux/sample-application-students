@@ -10,6 +10,9 @@ before_install:
 - docker pull sidoux/tp-http
 - docker pull sidoux/tp-api
 - docker pull sidoux/tp-db
+- docker build -t sidoux/tp-http ./httpd/
+- docker build -t sidoux/tp-db ./database/
+- docker build -t sidoux/tp-api ./simple-api/
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
