@@ -1,8 +1,5 @@
 language: java
 
-services:
-	- docker
-
 addons:
   sonarcloud:
     organization: "sidouuuux"
