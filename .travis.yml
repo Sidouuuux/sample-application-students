@@ -10,12 +10,12 @@ addons:
       secure: S9+fj+KKbhJCILSukxH9kmMOVcPs5fkrYUvj62BcQi7zh22zPqNhUJwLF74QX3BDnr9xdT9TGw6i9pkIG6oS0eUUAnXBjJXG0wEGBdzJRsMmDTDOfdtH1izYnBen/VFqAisaRSkSY1bbN7Wpf5T/8Zqv+eIGMrUIpRyI/sKgkCn6yCTDKRCLXAjv7zzPi5kki55XVgoEhqmLpVVLgOHvyyzjJzQ9m/uugyb15mincRdfvBcX1h37VDG9Y2xHkUb9Au6VEbGWwSJjYkkt9//LyDivNvRoTMLKSa5/1z2IaVaMiCh3FPAH/GQV+aAHCZF0sJRALMEmiZQ87E4rtlNG2nkLnEpu36MgQMbKD0BY4yBZNpQxRwcVPlbvKbqI+JGcFiZJLTOhm/K8jVU126WBGQ4sPbxEQwWsXJ4ij6sohK8fGqx4FgHyUwtuGyUH+kBvSIooOD0N3lVwE/5AGuP0VTATia9eTNgZwKUg4xsY0CCL6qzBRZ2NF+robFTfttfQbba2Ay8NViR0hnsbJXDljkBb0MoJM2TgMjI3jA+GLiJfbY4DLMYkXW7UJ6ocmMd375dTMEf8jBpwWVzHb8m/rLpnOfDXXmPC492sm4ILj239EgoaTVcd5v9GYR4u+rkdzb1G9qahuTwLly7+woCa7bYLahu4ayr9xYsFq4O1mvE=
 before_install:
   - "echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin" 
-  - "docker pull $DOCKER_USER/tp-http"
-  - "docker pull $DOCKER_USER/tp-api"
-  - "docker pull $DOCKER_USER/tp-db"
   - "docker build -t $DOCKER_USER/tp-http ./httpd/"
   - "docker build -t $DOCKER_USER/tp-db ./database/"
   - "docker build -t $DOCKER_USER/tp-api ./simple-api/"
+  - "docker push $DOCKER_USER/tp-http"
+  - "docker push $DOCKER_USER/tp-api"
+  - "docker push $DOCKER_USER/tp-db"
 language: java
 script: 
   - "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar"
